@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  --login-green: #6c8c4f;
+  --login-green-hover: #5a7441;
+  --input-bg: #F0F0F0;
+  --text-color: #0F280B;
+  --accent-color: #0F280B;
+  --login-btn-bg: #658139;
+  --link-color: #DC3545;
+  --blue-link-contrast: #66C2FF;
+  --white-text: #FFFFFF;
+
+  --btn-student: #2196F3;
+  --btn-faculty: #C12B27;
+  --btn-organization: #4CAF50;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+body {
+  display: grid;
+  place-items: center;
+
+  background-image: url('../img/cssBuilding.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-attachment: fixed;
+
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
+.login-container,
+.reg-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.login-container::-webkit-scrollbar,
+.reg-card::-webkit-scrollbar {
+  width: 6px;
+}
+.login-container::-webkit-scrollbar-thumb,
+.reg-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 1rem;
+}
+
+.logo-container img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.login-container h2, .reg-card h3 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  position: relative;
+  z-index: 4;
+  text-shadow: 0 0 5px rgba(0,0,0,0.8);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: 2px solid var(--login-green);
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 25px;
+  background-color: var(--login-green);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.login-button:hover {
+  background-color: var(--login-green-hover);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.footer-links a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+  opacity: 0.8;
+  color:#66C2FF
+}
+
+.error-message {
+  color: white;
+  background-color: rgba(217, 83, 79, 0.3);
+  border: 1px solid rgba(217, 83, 79, 0.8);
+  border-radius: 10px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.reg-card p {
+    color: var(--white-text);
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.reg-btn {
+    display: block;
+    width: 80%;
+    padding: 12px;
+    margin: 10px auto;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    position: relative;
+    z-index: 3;
+}
+
+.reg-card .footer-links a {
+    position: relative;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.reg-btn-student { background-color: var(--btn-student); }
+.reg-btn-faculty { background-color: var(--btn-faculty); }
+.reg-btn-organization { background-color: var(--btn-organization); }
+
+.reg-card .footer-links {
+    justify-content: center;
+    gap: 15px;
+}
+
+.reg-card .footer-links small {
+    color: var(--white-text);
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 25px;
+  }
+  h1 {
+    font-size: 1.2em;
+  }
+}
+
+.reg-card .input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.reg-card .input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+}
+
+.reg-card .input-group input[type="text"],
+.reg-card .input-group input[type="email"],
+.reg-card .input-group input[type="password"] {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.reg-card .input-group select {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.reg-card input[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 25px;
+  background-color: var(--login-green);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.reg-card input[type="submit"]:hover {
+  background-color: var(--login-green-hover);
+}
+
+.reg-card .error,
+.reg-card .success {
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.reg-card .error {
+  background-color: rgba(217, 83, 79, 0.3);
+  border: 1px solid rgba(217, 83, 79, 0.8);
+}
+
+.reg-card .success {
+  background-color: rgba(92, 184, 92, 0.3);
+  border: 1px solid rgba(92, 184, 92, 0.8);
+}
+
+.reg-card .name-group {
+  display: flex;
+  gap: 10px;
+}
+
+.reg-card .name-group input[name="fname"] { width: 40%; }
+.reg-card .name-group input[name="mname"] { width: 20%; }
+.reg-card .name-group input[name="lname"] { width: 40%; }
