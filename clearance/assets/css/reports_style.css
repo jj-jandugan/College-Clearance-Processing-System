@@ -1,0 +1,177 @@
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #F9F9F9;
+}
+
+h1 {
+    color: #0F280B;
+    border-bottom: 2px solid #36451C;
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 20pt;
+}
+
+.report-meta {
+    font-size: 10pt;
+    margin-bottom: 5px;
+    font-style: italic;
+    color: #555;
+}
+
+.static-parameters {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 11pt;
+    border-radius: 4px;
+    color: #000;
+}
+.static-parameters strong {
+    color: #0F280B;
+}
+
+table.audit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+    font-size: 10pt;
+}
+
+.audit-table th, .audit-table td {
+    border: 1px solid #999;
+    padding: 8px 10px;
+    text-align: left;
+}
+
+.audit-table th {
+    background-color: #e8e8e8;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Status Colors */
+.status-Approved, .status-Completed, .status-CLEARED { color: #2E7D32; font-weight: bold; }
+.status-Pending { color: #D4AC0D; font-weight: bold; }
+.status-Rejected, .status-Cancelled { color: #C62828; font-weight: bold; }
+
+/* --- SCREEN ONLY STYLES (Interactive) --- */
+@media screen {
+    body { margin: 30px; }
+
+    /* Top Bar (Back button, Print button) */
+    .controls, .controls-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        background: #fff;
+        padding: 10px 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    /* Filter Form Container */
+    .filter-controls-area, .controls form {
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .form-group { margin-bottom: 0; }
+    .form-group label { display: block; font-size: 0.85em; margin-bottom: 4px; font-weight: 600; }
+    select, input[type="text"] {
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        height: 35px;
+        min-width: 150px;
+    }
+
+    .btn-primary {
+        background-color: #0F280B;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        height: 35px;
+        padding: 0 20px;
+        transition: background 0.2s;
+    }
+    .btn-primary:hover { background-color: #1a4115; }
+    .back-link { color: #0F280B; text-decoration: none; font-weight: 600; display: flex; align-items: center; }
+}
+
+/* --- PRINT ONLY STYLES (Clean Document) --- */
+@media print {
+    /* 1. HIDE ALL INTERACTIVE ELEMENTS */
+    .controls,
+    .controls-row,
+    .filter-controls-area,
+    .print-button,
+    .back-link,
+    form,
+    button,
+    .sidebar,
+    .page-header,
+    .log-out-btn {
+        display: none !important;
+    }
+
+    /* 2. PAGE SETUP */
+    @page { margin: 0.5cm; size: landscape; }
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        color: black;
+    }
+
+    /* 3. ENSURE VISIBILITY OF KEY DATA */
+    .static-parameters {
+        border: none; /* Remove box border for cleaner print */
+        padding: 0;
+        margin-bottom: 10px;
+        font-size: 11pt;
+        display: block !important;
+    }
+
+    h1 {
+        font-size: 18pt;
+        margin-bottom: 10px;
+        display: block !important;
+    }
+
+    .report-meta {
+        display: block !important;
+    }
+
+    /* 4. TABLE PRINT STYLING */
+    table.audit-table {
+        border: 1px solid #000;
+        width: 100%;
+    }
+    .audit-table th {
+        background-color: #f0f0f0 !important;
+        border: 1px solid #000;
+        color: black;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .audit-table td {
+        border: 1px solid #000;
+    }
+
+    tr { page-break-inside: avoid; }
+}

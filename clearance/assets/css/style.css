@@ -1,0 +1,518 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-sidebar-bg: #0F280B;
+    --color-header-bg: #36451C;
+    --color-logout-btn: #658139;
+    --color-faculty-card-bg: #0F280B;
+    --color-accent-green: #4CAF50;
+
+
+    --color-card-pending: #D4AC0D;
+    --color-card-approved: #6B8E23;
+    --color-card-rejected: #C0392B;
+    --color-card-cancelled: #7F8C8D;
+
+    --color-modal-cancel: #C0392B;
+    --color-modal-submit: #4CAF50;
+    --color-upload-box: #E6E6FA;
+    --color-text-light: #F0F0F0;
+    --color-text-dark: #333;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9;
+    color: var(--color-text-dark);
+}
+
+
+.sidebar {
+    width: 250px;
+    background-color: var(--color-sidebar-bg);
+    color: var(--color-text-light);
+    height: 100vh;
+    padding: 20px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.sidebar-profile {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.profile-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px auto;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.sidebar a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+.sidebar a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    border-left: 5px solid var(--color-accent-green);
+    padding-left: 15px;
+}
+.sidebar a:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.main-content {
+    flex-grow: 1;
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    margin-top: 70px;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.page-header {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    width: calc(100% - 250px);
+    z-index: 1000;
+
+    background-color: var(--color-header-bg);
+    color: var(--color-text-light);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-height: 40px;
+    margin: 0;
+}
+
+.page-header .logo-text {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--color-text-light);
+    display: flex;
+    align-items: center;
+}
+
+.log-out-btn {
+    background-color: var(--color-logout-btn);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    align-self: center;
+    white-space: nowrap;
+}
+.log-out-btn:hover {
+    background-color: #556c30;
+}
+
+.page-content-wrapper {
+    padding: 20px 30px;
+}
+
+.alert-warning {
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #fff3cd;
+    border: 1px solid #ffe0a3;
+    border-radius: 6px;
+    color: #856404;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1em;
+}
+
+.signer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 0;
+}
+
+.signer-card-org, .signer-card-faculty {
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100px;
+    font-weight: 600;
+
+    background-color: var(--color-faculty-card-bg);
+    color: var(--color-text-light);
+    position: relative;
+}
+
+.signer-card-org:hover, .signer-card-faculty:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.signer-card-org h3, .signer-card-faculty h3 {
+    color: var(--color-text-light);
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+    padding-left: 60px;
+}
+.signer-card-org p, .signer-card-faculty p {
+    font-size: 0.9em;
+    color: #ccc;
+    margin: 0;
+    padding-left: 60px;
+}
+
+.logo-small {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.status-new {
+    background-color: var(--color-accent-green);
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+}
+.modal-content {
+    background:#fff;
+    max-width:380px;
+    margin:80px auto;
+    padding:30px;
+    border-radius:10px;
+    position:relative;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+    color: var(--color-text-dark);
+    font-weight: 700;
+    font-size: 1.5em;
+    margin: 5px 0;
+    border: none;
+    padding: 0;
+}
+.modal-content p {
+    font-size: 0.9em;
+    color: #555;
+    margin: 5px 0 20px 0;
+}
+
+.modal-content .logo-large {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px auto;
+    background-image: url('../assets/img/ccs_logo.png');
+    background-size: cover;
+    border-radius: 50%;
+    border: 3px solid var(--color-sidebar-bg);
+}
+
+.file-upload-box {
+    background-color: var(--color-upload-box);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px dashed #999;
+    margin-bottom: 25px;
+}
+
+.file-upload-box .upload-icon {
+    font-size: 30px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.browse-button {
+    background-color: #6495ED;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.file-upload-box input[type="file"] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.modal-actions button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.cancel-modal-btn {
+    background-color: var(--color-modal-cancel);
+    color: white;
+}
+.submit-modal-btn {
+    background-color: var(--color-modal-submit);
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-size: 0.95em;
+    height: 35px;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    text-align: center;
+}
+
+.page-content-wrapper h1 {
+    margin-bottom: 5px;
+}
+.page-content-wrapper hr {
+    margin: 10px 0 20px 0;
+}
+
+.cancel-btn, .view-upload-btn {
+    background-color: var(--color-modal-cancel);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    min-width: 200px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card p {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.card.pending {
+    background-color: var(--color-card-pending);
+}
+
+.card.approved {
+    background-color: var(--color-card-approved);
+}
+
+.card.rejected {
+    background-color: var(--color-card-rejected);
+}
+.card.cancelled {
+    background-color: var(--color-card-cancelled);
+}
+
+.status-approved {
+    color: #3dbb5d;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #f7c843;
+    font-weight: bold;
+}
+
+.status-rejected,
+.status-cancelled {
+    color: #e04b45;
+    font-weight: bold;
+}
+
+.section-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.section-card {
+    background-color: #fff;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--color-text-dark);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #eee;
+}
+.section-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.section-card.selected {
+    background-color: var(--color-header-bg);
+    color: var(--color-text-light);
+    border-color: var(--color-accent-green);
+    box-shadow: 0 0 0 3px var(--color-accent-green);
+}
+
+.section-card.selected h3, .section-card.selected p {
+    color: var(--color-text-light);
+}
+
+.section-card h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em;
+}
+.section-card p {
+    font-size: 1.6em;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-sidebar-bg);
+}
+
+.status-Completed {
+    color: var(--color-accent-green);
+    font-weight: 700;
+}
+.status-Pending {
+    color: var(--color-card-pending);
+    font-weight: 700;
+}
+.status-Issues,
+.status-Rejected,
+.status-Cancelled {
+    color: var(--color-card-rejected);
+    font-weight: 700;
+}
+.status-NotStarted {
+    color: #999;
+    font-weight: 600;
+}
+
